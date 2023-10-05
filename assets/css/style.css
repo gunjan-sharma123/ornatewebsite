@@ -78,6 +78,10 @@ h6 {
   transition: all 0.5s;
   z-index: 996;
 }
+#header.header-scrolled {
+  top: 0;
+}
+
 
 #topbar.topbar-scrolled {
   top: -40px;
@@ -87,7 +91,9 @@ h6 {
   font-style: normal;
   color: #d9ba85;
 }
-
+nav#navbar {
+  margin-left: 30px;
+}
 #topbar .contact-info i span {
   padding-left: 5px;
   color: #fff;
@@ -157,7 +163,9 @@ h6 {
   background: transparent;
   transition: all 0.5s;
   z-index: 997;
-  padding: 20px 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  top:40px;
 }
 
 #header.header-scrolled {
@@ -205,13 +213,16 @@ h6 {
   position: relative;
 }
 
-.navbar a,
-.navbar a:focus {
+
+.navbar a, .navbar a:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0 10px 30px;
+  padding: 10px 0;
+  margin-left: 12px;
+  margin-right: 12px;
   font-size: 15px;
+  font-weight: 600;
   color: #fff;
   white-space: nowrap;
   transition: 0.3s;
@@ -1839,7 +1850,7 @@ section {
 }
 
 #footer .footer-top .footer-links ul a:hover {
-  color: #ef6445;
+  color: #4a9c01;
 }
 
 #footer .footer-top .footer-newsletter form {
@@ -2017,7 +2028,7 @@ font-weight: 700;}
   height: 200px;
 }
 .ct-banner-inner {
-  padding-top: 100px;
+  padding-top: -10px;
   margin-right: 100px;
   position: relative;
   z-index: 1;
@@ -2025,10 +2036,10 @@ font-weight: 700;}
 .ct-banner-inner:before {
   content: '';
   width: 550px;
-  height: 550px;
+  height: 520px;
   border: 66px solid #4a9c01;
   position: absolute;
-  top: 0;
+  top: -120px;
   right: -107px;
   z-index: -1;
   -webkit-border-radius: 100%;
@@ -2244,12 +2255,14 @@ section#award p {
   color: #190c00;
 }
 ul#topnav li {
-  margin-left: 20px;
+  margin-right: 20px;
 }
 ul#topnav {
-    list-style-type: none;
-    display: flex;
-    margin-bottom: 8px;    
+  list-style-type: none;
+  display: flex;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  padding-left: 0px;
 }
 ul#topnav li a{
   color:#fff;
@@ -2306,4 +2319,35 @@ section#clients  .img-fluid {
   bottom: -5px;
   left: 0;
   width: 100%;
+}
+ul#topnav li a img {
+  width: 23px;
+  height: 23px;
+}
+ul.top-menu li a.nav-link{
+  position: relative;
+}
+ul.top-menu li a.nav-link:before {
+  bottom: 5px;
+  display: block;
+  height: 3px;
+  width: 0%;
+  content: "";
+  background-color: #4a9c01;
+  left: 50%;
+  transform: translate(-50%,0);
+  position: absolute;
+  -webkit-transition: all .35s ease;
+  transition: all .35s ease;
+}
+ul.top-menu li a.nav-link:hover {
+  color: #4a9c01;
+  transition: .4s;
+}
+ul.top-menu li a.nav-link:hover:before {
+  width: calc(100% - 20%);
+}
+
+#header.header-scrolled .logo:after{
+  display: none;
 }

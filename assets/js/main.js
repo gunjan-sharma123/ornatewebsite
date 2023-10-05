@@ -62,41 +62,7 @@
   onscroll(document, navbarlinksActive)
 
 
-  /**
-   * Clients Slider
-   */
-  new Swiper('.clients-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 2,
-        spaceBetween: 40
-      },
-      480: {
-        slidesPerView: 3,
-        spaceBetween: 60
-      },
-      640: {
-        slidesPerView: 4,
-        spaceBetween: 80
-      },
-      992: {
-        slidesPerView: 6,
-        spaceBetween: 120
-      }
-    }
-  });
+  
 
   /**
    * Scrolls to an element with header offset
@@ -119,18 +85,42 @@
   /**
    * Toggle .header-scrolled class to #header when page is scrolled
    */
-  let selectHeader = select('#header')
-  if (selectHeader) {
-    const headerScrolled = () => {
-      if (window.scrollY > 100) {
-        selectHeader.classList.add('header-scrolled')
-      } else {
-        selectHeader.classList.remove('header-scrolled')
-      }
-    }
-    window.addEventListener('load', headerScrolled)
-    onscroll(document, headerScrolled)
-  }
+  // let selectHeader = select('#header')
+  // if (selectHeader) {
+  //   const headerScrolled = () => {
+  //     if (window.scrollY > 100) {
+  //       selectHeader.classList.add('header-scrolled')
+  //     } else {
+  //       selectHeader.classList.remove('header-scrolled')
+  //     }
+  //   }
+  //   window.addEventListener('load', headerScrolled)
+  //   onscroll(document, headerScrolled)
+  // }
+
+   /**
+   * Toggle .header-scrolled class to #header when page is scrolled
+   */
+   let selectHeader = select('#header')
+   let selectTopbar = select('#topbar')
+   if (selectHeader) {
+     const headerScrolled = () => {
+       if (window.scrollY > 100) {
+         selectHeader.classList.add('header-scrolled')
+         if (selectTopbar) {
+           selectTopbar.classList.add('topbar-scrolled')
+         }
+       } else {
+         selectHeader.classList.remove('header-scrolled')
+         if (selectTopbar) {
+           selectTopbar.classList.remove('topbar-scrolled')
+         }
+       }
+     }
+     window.addEventListener('load', headerScrolled)
+     onscroll(document, headerScrolled)
+   }
+ 
 
   /**
    * Back to top button
@@ -206,6 +196,71 @@
     });
   }
 
+   /**
+   * Menu isotope and filter
+   */
+   window.addEventListener('load', () => {
+    let menuContainer = select('.menu-container');
+    if (menuContainer) {
+      let menuIsotope = new Isotope(menuContainer, {
+        itemSelector: '.menu-item',
+        layoutMode: 'fitRows'
+      });
+
+      let menuFilters = select('#menu-flters li', true);
+
+      on('click', '#menu-flters li', function(e) {
+        e.preventDefault();
+        menuFilters.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        menuIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        menuIsotope.on('arrangeComplete', function() {
+          AOS.refresh()
+        });
+      }, true);
+    }
+
+  });
+/**
+   * Clients Slider
+   */
+new Swiper('.clients-slider', {
+  speed: 400,
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
+  slidesPerView: 'auto',
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true
+  },
+  breakpoints: {
+    320: {
+      slidesPerView: 2,
+      spaceBetween: 40
+    },
+    480: {
+      slidesPerView: 3,
+      spaceBetween: 60
+    },
+    640: {
+      slidesPerView: 4,
+      spaceBetween: 80
+    },
+    992: {
+      slidesPerView: 6,
+      spaceBetween: 120
+    }
+  }
+});
   /**
    * Hero carousel indicators
    */
