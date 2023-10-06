@@ -171,5 +171,34 @@
 
 }
 @media(max-width: 360px){
+    .ct-banner-inner:before {
+        content: '';
+        width: 310px;
+        height: 310px;
+        border: 30px solid #4a9c01;
+        position: absolute;
+        top: 0px;
+        right: -5px;
+    }
+    .ct-banner1 .item--title {
+        font-size: 22px;
+        margin-bottom: 8px;
+        margin-top: 8px;
+        font-weight: 800;
+    }
+    #hero p {
+        font-size: 14px;
+    }
+    #hero h2 {
+        font-size: 20px;
+    }
+    section#hero p br {
+        display: none;
+    }
+    section#hero p span{
+        display: none;
+    }
+    
+    
 
 }
